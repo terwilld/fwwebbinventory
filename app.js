@@ -6,7 +6,7 @@ const methodOverride = require('method-override')
 const ejsMate = require('ejs-mate');
 
 const catchAsync = require('./utils/catchAsync');
-const ExpressError = require('./utils/ExpressError')
+const ExpressError = require('./utils/expressError')
 const Joi = require('joi');
 const flash = require('connect-flash')
 const session = require('express-session')
