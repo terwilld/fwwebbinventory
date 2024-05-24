@@ -5,7 +5,7 @@
     <div class="col-6 offset-3">
         <h1 class="text-center">Create an inventory entry!</h1>
 
-        <form action="/customer" method="post" class="row g-3 py-5 validated-form" novalidate>
+        <form id="myForm" action="/customer" method="post" class="row g-3 py-5 validated-form" novalidate>
             <div class="col-md-6">
                 <label for="firstName" class="form-label">First Name</label>
                 <input type="text" class="form-control" id="firstName" required name="customer[firstName]">
@@ -105,15 +105,13 @@
                 </div>
             </div>
 
-
-
             <div class="col-md-12 d-flex flex-row">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Item Name" aria-label="Username" required
                         name="customer[itemName]">
                     <input type="text" class="form-control" placeholder="Item Value" aria-label="Server" required
                         name="customer[itemValue]">
-                    <button class="btn btn-danger btn-lg" id="next"> <i class="bi bi-trash3"></i> </button>
+                    <button class="btn btn-danger btn-lg deleteRow" id="next"> <i class="bi bi-trash3"></i> </button>
                 </div>
 
             </div>
@@ -124,12 +122,9 @@
                         name="customer[itemName]">
                     <input type="text" class="form-control" placeholder="Item Value" aria-label="Server" required
                         name="customer[itemValue]">
-                    <button class="btn btn-danger btn-lg" id="next"> <i class="bi bi-trash3"></i> </button>
+                    <button class="btn btn-danger btn-lg deleteRow" id="deleteRow"><i class="bi bi-trash3"></i></button>
                 </div>
-
             </div>
-
-
 
 
             <div class="col-md-6  py-2">
