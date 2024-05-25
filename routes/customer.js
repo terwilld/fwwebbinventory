@@ -17,6 +17,30 @@ router.post('/',
 
 
 
+router.get('/:id/edit',
+    (req, res, next) => {
+        console.log('pre-error')
+        next();
+    }
+    , customer.renderEditForm)
+
+
+router.patch('/:id', (req, res, next) => {
+    console.log("Test")
+    next()
+},
+    catchAsync(customer.updateInventory))
+
+
+
 router.get('/:id', catchAsync(customer.showInventory))
+
+
+
+
+
+router.delete('/:id',
+    catchAsync(customer.deleteInventory))
+
 
 module.exports = router;

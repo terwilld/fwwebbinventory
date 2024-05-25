@@ -43,6 +43,14 @@ module.exports.createInventory = async (req, res, next) => {
 
 
 
+module.exports.deleteInventory = async (req, res, next) => {
+    const result = await Inventory.findByIdAndDelete(req.params.id)
+    req.flash('success', 'You have deleted this Inventory!')
+    res.redirect('/customer/new')
+}
+
+
+
 module.exports.showInventory = async (req, res, next) => {
     console.log('I am in the show controller')
     const inventory = await Inventory.findById(req.params.id)
@@ -60,6 +68,36 @@ module.exports.showInventory = async (req, res, next) => {
     console.log(inventory)
     res.render('customers/show.ejs', { inventory })
 }
+
+
+module.exports.renderEditForm = async (req, res, next) => {
+    console.log('I am in the render edit controller')
+    const inventory = await Inventory.findById(req.params.id)
+    console.log(inventory)
+    res.render('customers/edit.ejs', { inventory })
+}
+
+module.exports.updateInventory = async (req, res, next) => {
+    const { id } = req.params
+    const inventory = await Inventory.findByIdAndUpdate(req.params.id, { ...req.body.campground })
+    let newInventory = []
+    for (let i = 0; i < req.body.customer.itemName.length; i++) {
+        let inventoryName = capitalizeFirstLetter(req.body.customer.itemName[i])
+        let inventoryValue = capitalizeFirstLetter(req.body.customer.itemValue[i])
+        newInventory.push({ inventoryName: inventoryName, inventoryValue: inventoryValue })
+    }
+    inventory.inventory = newInventory
+    inventory.firstName = capitalizeFirstLetter(inventory.firstName)
+    inventory.lastName = capitalizeFirstLetter(inventory.lastName)
+    inventory.city = capitalizeFirstLetter(inventory.city)
+
+    await inventory.save()
+    req.flash('success', 'Successfully modified the Inventory!')
+    console.log(inventory._id)
+    return res.redirect(`/customer/${inventory._id}`)
+}
+
+
 
 
 function capitalizeFirstLetter(string) {

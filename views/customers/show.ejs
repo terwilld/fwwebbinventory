@@ -18,8 +18,22 @@
                     <li class="list-group-item"><%= item.inventoryName%>:$<%= item.inventoryValue%></li>
                     <% } %>
                 </ul>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
+
+                <div class="card-footer">
+                    <form class="card-link ml-5 pl-5 d-inline" action="/customer/<%=inventory._id%>/edit">
+                        <button class="card-link btn btn-warning d-inline">Edit This Inventory</button>
+                    </form>
+
+
+                    <form class="card-link ml-5 pl-5 d-inline" action="/customer/<%=inventory._id%>/?_method=DELETE"
+                        method="post">
+                        <button class="card-link btn btn-danger d-inline">Delete This Inventory</button>
+                    </form>
+
+                </div>
+
             </div>
         </div>
+
     </div>
+</div>
